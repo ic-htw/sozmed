@@ -21,17 +21,17 @@ drop table if exists Message;
 
 sql2 = f"""
 CREATE TABLE Message (
-    creationDate timestamp with time zone,
+    creationDate timestamp with time zone NOT NULL,
     id bigint,
     language varchar(80),
     content varchar(2000),
     imageFile varchar(80),
-    locationIP varchar(80),
-    browserUsed varchar(80),
+    locationIP varchar(80) NOT NULL,
+    browserUsed varchar(80) NOT NULL,
     length int NOT NULL,
-    CreatorPersonId bigint,
+    CreatorPersonId bigint NOT NULL,
     ContainerForumId bigint,
-    LocationCountryId bigint,
+    LocationCountryId bigint NOT NULL,
     ParentMessageId bigint
 );
 """
