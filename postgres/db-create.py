@@ -1,7 +1,7 @@
 import pandas as pd
 from sqlalchemy import create_engine, text
 import cred as c
-csvdir = '../csv'
+csvdir = '/var/lib/postgresql/csv/sozmed'
 
 engine = create_engine(
     f'postgresql://{c.pg_userid}:{c.pg_password}@{c.pg_host}/{c.pg_db}', 
@@ -53,13 +53,13 @@ CREATE TABLE Tag (
 """
 
 sql3 = f"""
-insert into Tag
-  select * from read_csv('{csvdir}/Tag.csv', delim='|', header=True, AUTO_DETECT=TRUE);
+copy Tag from '{csvdir}/Tag.csv' delimiter '|' csv header;
 """
 
-# con.execute(sql1)
-# con.execute(sql2)
-# con.execute(sql3)
+with engine.connect() as con:
+    con.execute(text(sql1))
+    con.execute(text(sql2))
+    con.execute(text(sql3))
 
 # -------------------------------------------------
 # 03 Country
@@ -78,13 +78,13 @@ CREATE TABLE Country (
 """
 
 sql3 = f"""
-insert into Country
-  select * from read_csv('{csvdir}/Country.csv', delim='|', header=True, AUTO_DETECT=TRUE);
+copy Country from '{csvdir}/Country.csv' delimiter '|' csv header;
 """
 
-# con.execute(sql1)
-# con.execute(sql2)
-# con.execute(sql3)
+with engine.connect() as con:
+    con.execute(text(sql1))
+    con.execute(text(sql2))
+    con.execute(text(sql3))
 
 # -------------------------------------------------
 # 04 City
@@ -103,13 +103,13 @@ CREATE TABLE City (
 """
 
 sql3 = f"""
-insert into City
-  select * from read_csv('{csvdir}/City.csv', delim='|', header=True, AUTO_DETECT=TRUE);
+copy City from '{csvdir}/City.csv' delimiter '|' csv header;
 """
 
-# con.execute(sql1)
-# con.execute(sql2)
-# con.execute(sql3)
+with engine.connect() as con:
+    con.execute(text(sql1))
+    con.execute(text(sql2))
+    con.execute(text(sql3))
 
 # -------------------------------------------------
 # 05 Company
@@ -128,13 +128,13 @@ CREATE TABLE Company (
 """
 
 sql3 = f"""
-insert into Company
-  select * from read_csv('{csvdir}/Company.csv', delim='|', header=True, AUTO_DETECT=TRUE);
+copy Company from '{csvdir}/Company.csv' delimiter '|' csv header;
 """
 
-# con.execute(sql1)
-# con.execute(sql2)
-# con.execute(sql3)
+with engine.connect() as con:
+    con.execute(text(sql1))
+    con.execute(text(sql2))
+    con.execute(text(sql3))
 
 # -------------------------------------------------
 # 06 University
@@ -153,13 +153,13 @@ CREATE TABLE University (
 """
 
 sql3 = f"""
-insert into University
-  select * from read_csv('{csvdir}/University.csv', delim='|', header=True, AUTO_DETECT=TRUE);
+copy University from '{csvdir}/University.csv' delimiter '|' csv header;
 """
 
-# con.execute(sql1)
-# con.execute(sql2)
-# con.execute(sql3)
+with engine.connect() as con:
+    con.execute(text(sql1))
+    con.execute(text(sql2))
+    con.execute(text(sql3))
 
 
 # -------------------------------------------------
@@ -186,13 +186,13 @@ CREATE TABLE Person (
 """
 
 sql3 = f"""
-insert into Person
-  select * from read_csv('{csvdir}/Person.csv', delim='|', header=True, AUTO_DETECT=TRUE);
+copy Person from '{csvdir}/Person.csv' delimiter '|' csv header;
 """
 
-# con.execute(sql1)
-# con.execute(sql2)
-# con.execute(sql3)
+with engine.connect() as con:
+    con.execute(text(sql1))
+    con.execute(text(sql2))
+    con.execute(text(sql3))
 
 
 # -------------------------------------------------
@@ -212,13 +212,13 @@ CREATE TABLE Forum (
 """
 
 sql3 = f"""
-insert into Forum
-  select * from read_csv('{csvdir}/Forum.csv', delim='|', header=True, AUTO_DETECT=TRUE);
+copy Forum from '{csvdir}/Forum.csv' delimiter '|' csv header;
 """
 
-# con.execute(sql1)
-# con.execute(sql2)
-# con.execute(sql3)
+with engine.connect() as con:
+    con.execute(text(sql1))
+    con.execute(text(sql2))
+    con.execute(text(sql3))
 
 
 # -------------------------------------------------
@@ -237,13 +237,13 @@ CREATE TABLE Forum_hasMember_Person (
 """
 
 sql3 = f"""
-insert into Forum_hasMember_Person
-  select * from read_csv('{csvdir}/Forum_hasMember_Person.csv', delim='|', header=True, AUTO_DETECT=TRUE);
+copy Forum_hasMember_Person from '{csvdir}/Forum_hasMember_Person.csv' delimiter '|' csv header;
 """
 
-# con.execute(sql1)
-# con.execute(sql2)
-# con.execute(sql3)
+with engine.connect() as con:
+    con.execute(text(sql1))
+    con.execute(text(sql2))
+    con.execute(text(sql3))
 
 
 # -------------------------------------------------
@@ -262,13 +262,13 @@ CREATE TABLE Forum_hasTag_Tag (
 """
 
 sql3 = f"""
-insert into Forum_hasTag_Tag
-  select * from read_csv('{csvdir}/Forum_hasTag_Tag.csv', delim='|', header=True, AUTO_DETECT=TRUE);
+copy Forum_hasTag_Tag from '{csvdir}/Forum_hasTag_Tag.csv' delimiter '|' csv header;
 """
 
-# con.execute(sql1)
-# con.execute(sql2)
-# con.execute(sql3)
+with engine.connect() as con:
+    con.execute(text(sql1))
+    con.execute(text(sql2))
+    con.execute(text(sql3))
 
 
 
@@ -288,13 +288,13 @@ CREATE TABLE Person_hasInterest_Tag (
 """
 
 sql3 = f"""
-insert into Person_hasInterest_Tag
-  select * from read_csv('{csvdir}/Person_hasInterest_Tag.csv', delim='|', header=True, AUTO_DETECT=TRUE);
+copy Person_hasInterest_Tag from '{csvdir}/Person_hasInterest_Tag.csv' delimiter '|' csv header;
 """
 
-# con.execute(sql1)
-# con.execute(sql2)
-# con.execute(sql3)
+with engine.connect() as con:
+    con.execute(text(sql1))
+    con.execute(text(sql2))
+    con.execute(text(sql3))
 
 
 # -------------------------------------------------
@@ -314,13 +314,13 @@ CREATE TABLE Person_studyAt_University (
 """
 
 sql3 = f"""
-insert into Person_studyAt_University
-  select * from read_csv('{csvdir}/Person_studyAt_University.csv', delim='|', header=True, AUTO_DETECT=TRUE);
+copy Person_studyAt_University from '{csvdir}/Person_studyAt_University.csv' delimiter '|' csv header;
 """
 
-# con.execute(sql1)
-# con.execute(sql2)
-# con.execute(sql3)
+with engine.connect() as con:
+    con.execute(text(sql1))
+    con.execute(text(sql2))
+    con.execute(text(sql3))
 
 
 # -------------------------------------------------
@@ -340,13 +340,13 @@ CREATE TABLE Person_workAt_Company (
 """
 
 sql3 = f"""
-insert into Person_workAt_Company
-  select * from read_csv('{csvdir}/Person_workAt_Company.csv', delim='|', header=True, AUTO_DETECT=TRUE);
+copy Person_workAt_Company from '{csvdir}/Person_workAt_Company.csv' delimiter '|' csv header;
 """
 
-# con.execute(sql1)
-# con.execute(sql2)
-# con.execute(sql3)
+with engine.connect() as con:
+    con.execute(text(sql1))
+    con.execute(text(sql2))
+    con.execute(text(sql3))
 
 
 # -------------------------------------------------
@@ -366,13 +366,13 @@ CREATE TABLE Person_knows_Person (
 """
 
 sql3 = f"""
-insert into Person_knows_Person
-  select * from read_csv('{csvdir}/Person_knows_Person.csv', delim='|', header=True, AUTO_DETECT=TRUE, SAMPLE_SIZE=-1);
+copy Person_knows_Person from '{csvdir}/Person_knows_Person.csv' delimiter '|' csv header;
 """
 
-# con.execute(sql1)
-# con.execute(sql2)
-# con.execute(sql3)
+with engine.connect() as con:
+    con.execute(text(sql1))
+    con.execute(text(sql2))
+    con.execute(text(sql3))
 
 
 
@@ -401,14 +401,15 @@ CREATE TABLE Message (
 """
 
 sql3 = f"""
-insert into Message
-  select * from read_csv('{csvdir}/Message.csv', delim='|', header=True, AUTO_DETECT=TRUE);
+copy Message from '{csvdir}/Message.csv' delimiter '|' csv header;
 """
 
-# con.execute(sql1)
-# con.execute(sql2)
-# con.execute(sql3)
+with engine.connect() as con:
+    con.execute(text(sql1))
+    con.execute(text(sql2))
+    con.execute(text(sql3))
 
+    
 # -------------------------------------------------
 # 16 Person_likes_Message
 # -------------------------------------------------
@@ -425,13 +426,13 @@ CREATE TABLE Person_likes_Message (
 """
 
 sql3 = f"""
-insert into Person_likes_Message
-  select * from read_csv('{csvdir}/Person_likes_Message.csv', delim='|', header=True, AUTO_DETECT=TRUE);
+copy Person_likes_Message from '{csvdir}/Person_likes_Message.csv' delimiter '|' csv header;
 """
 
-# con.execute(sql1)
-# con.execute(sql2)
-# con.execute(sql3)
+with engine.connect() as con:
+    con.execute(text(sql1))
+    con.execute(text(sql2))
+    con.execute(text(sql3))
 
 # -------------------------------------------------
 # 17 Message_hasTag_Tag
@@ -449,13 +450,13 @@ CREATE TABLE Message_hasTag_Tag (
 """
 
 sql3 = f"""
-insert into Message_hasTag_Tag
-  select * from read_csv('{csvdir}/Message_hasTag_Tag.csv', delim='|', header=True, AUTO_DETECT=TRUE);
+copy Message_hasTag_Tag from '{csvdir}/Message_hasTag_Tag.csv' delimiter '|' csv header;
 """
 
-# con.execute(sql1)
-# con.execute(sql2)
-# con.execute(sql3)
+with engine.connect() as con:
+    con.execute(text(sql1))
+    con.execute(text(sql2))
+    con.execute(text(sql3))
 
 
 # -------------------------------------------------
