@@ -378,7 +378,7 @@ drop table if exists Message;
 sql2 = f"""
 CREATE TABLE Message (
     creationDate timestamp with time zone NOT NULL,
-    id bigint,
+    id bigint PRIMARY KEY,
     language varchar(80),
     content varchar(2000),
     imageFile varchar(80),

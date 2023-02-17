@@ -1,5 +1,14 @@
-import duckdb
-con = duckdb.connect(database='socmed.duckdb', read_only=False)
+import pandas as pd
+from sqlalchemy import create_engine, text
+import cred as c
+
+engine = create_engine(
+    f'postgresql://{c.pg_userid}:{c.pg_password}@{c.pg_host}/{c.pg_db}', 
+    connect_args = {'options': '-c search_path=usozmed,public', 'keepalives_idle': 120},
+    pool_size=1, 
+    max_overflow=0,
+    execution_options={ 'isolation_level': 'AUTOCOMMIT' }
+)
 
 sql = """
 -- create indexes on foreign keys
@@ -11,7 +20,7 @@ CREATE INDEX i05 ON Forum_hasTag_Tag (TagId);
 CREATE INDEX i06 ON Person_knows_Person (Person1Id);
 CREATE INDEX i07 ON Person_knows_Person (Person2Id);
 CREATE INDEX i08 ON Person_likes_Message (PersonId);
-CREATE INDEX i09 ON Person_likes_Message (id);
+CREATE INDEX i09 ON Person_likes_Message (MessageId);
 CREATE INDEX i10 ON University (LocationPlaceId);
 CREATE INDEX i11 ON Company (LocationPlaceId);
 CREATE INDEX i12 ON person (LocationCityId);
@@ -25,11 +34,12 @@ CREATE INDEX i19 ON Message (CreatorPersonId);
 CREATE INDEX i20 ON Message (LocationCountryId);
 CREATE INDEX i21 ON Message (ContainerForumId);
 CREATE INDEX i22 ON Message (ParentMessageId);
-CREATE INDEX i23 ON Message_hasTag_Tag (id);
+CREATE INDEX i23 ON Message_hasTag_Tag (MessageId);
 CREATE INDEX i24 ON Message_hasTag_Tag (TagId);
 CREATE INDEX i25 ON Tag (TypeTagClassId);
 CREATE INDEX i26 ON TagClass (SubclassOfTagClassId);
 """
-con.execute(sql)
+with engine.connect() as con:
+    con.execute(text(sql))
 
 print("ok")
