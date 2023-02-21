@@ -42,3 +42,17 @@ CALL {
 } IN TRANSACTIONS OF 100000 ROWS;
 
 CREATE CONSTRAINT FOR (t:Tag) REQUIRE t.id IS UNIQUE;
+
+# ----------------------------------------------------------------------------
+# HAS_INTEREST
+# ----------------------------------------------------------------------------
+:auto LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/Person_hasInterest_Tag.csv' AS r FIELDTERMINATOR '|'
+CALL {
+  WITH r
+  MATCH (p:Person {id: r.PersonId})
+  MATCH (t:Tag {id: r.TagId})
+  MERGE (p)-[:HAS_INTEREST]->(t)
+} IN TRANSACTIONS OF 100000 ROWS;
+
+
+
