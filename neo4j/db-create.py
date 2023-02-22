@@ -23,8 +23,7 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/TagClass.csv' AS r FIELDTERMINATOR '|'
     CALL {{
       WITH r
-      MERGE (x:TagClass {{id:r.id}})
-        ON CREATE SET x.name = r.name
+      CREATE (x:TagClass {{id:r.id, name:r.name}})
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
@@ -32,7 +31,8 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     CREATE CONSTRAINT c_tagclass FOR (x:TagClass) REQUIRE x.id IS UNIQUE;
     """
 
-    # exe(driver, q1, q2, q3, q4)  
+    # exe(driver, q1, q2)  
+    # exe(driver, q3, q4)  
 
     # -------------------------------------------------
     # 02 Tag
@@ -48,8 +48,7 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/Tag.csv' AS r FIELDTERMINATOR '|'
     CALL {{
       WITH r
-      MERGE (x:Tag {{id:r.id}})
-        ON CREATE SET x.name = r.name
+      CREATE (x:Tag {{id:r.id, name:r.name}})
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
@@ -57,7 +56,8 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     CREATE CONSTRAINT c_tag FOR (x:Tag) REQUIRE x.id IS UNIQUE;
     """
 
-    # exe(driver, q1, q2, q3, q4)  
+    # exe(driver, q1, q2)  
+    # exe(driver, q3, q4)  
  
     # -------------------------------------------------
     # 03 Country
@@ -73,8 +73,7 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/Country.csv' AS r FIELDTERMINATOR '|'
     CALL {{
       WITH r
-      MERGE (x:Country {{id:r.id}})
-        ON CREATE SET x.name = r.name
+      CREATE (x:Country {{id:r.id, name:r.name}})
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
@@ -82,7 +81,8 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     CREATE CONSTRAINT c_Country FOR (x:Country) REQUIRE x.id IS UNIQUE;
     """
 
-    # exe(driver, q1, q2, q3, q4)  
+    # exe(driver, q1, q2)  
+    # exe(driver, q3, q4)  
 
     # -------------------------------------------------
     # 04 City
@@ -98,8 +98,7 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/City.csv' AS r FIELDTERMINATOR '|'
     CALL {{
       WITH r
-      MERGE (x:City {{id:r.id}})
-        ON CREATE SET x.name = r.name
+      CREATE (x:City {{id:r.id, name:r.name}})
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
@@ -107,7 +106,8 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     CREATE CONSTRAINT c_City FOR (x:City) REQUIRE x.id IS UNIQUE;
     """
 
-    # exe(driver, q1, q2, q3, q4)  
+    # exe(driver, q1, q2)  
+    # exe(driver, q3, q4)  
 
     # -------------------------------------------------
     # 05 Company
@@ -123,8 +123,7 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/Company.csv' AS r FIELDTERMINATOR '|'
     CALL {{
       WITH r
-      MERGE (x:Company {{id:r.id}})
-        ON CREATE SET x.name = r.name
+      CREATE (x:Company {{id:r.id, name:r.name}})
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
@@ -132,7 +131,8 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     CREATE CONSTRAINT c_Company FOR (x:Company) REQUIRE x.id IS UNIQUE;
     """
 
-    # exe(driver, q1, q2, q3, q4)  
+    # exe(driver, q1, q2)  
+    # exe(driver, q3, q4)  
 
     # -------------------------------------------------
     # 06 University
@@ -148,8 +148,7 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/University.csv' AS r FIELDTERMINATOR '|'
     CALL {{
       WITH r
-      MERGE (x:University {{id:r.id}})
-        ON CREATE SET x.name = r.name
+      CREATE (x:University {{id:r.id, name:r.name}})
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
@@ -157,7 +156,8 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     CREATE CONSTRAINT c_University FOR (x:University) REQUIRE x.id IS UNIQUE;
     """
 
-    # exe(driver, q2, q3, q4)  
+    # exe(driver, q1, q2)  
+    # exe(driver, q3, q4)  
 
     # -------------------------------------------------
     # 07 Person
@@ -173,8 +173,7 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/Person.csv' AS r FIELDTERMINATOR '|'
     CALL {{
       WITH r
-      MERGE (x:Person {{id:r.id}})
-        ON CREATE SET x.name = r.name
+      CREATE (x:Person {{id:r.id, name:r.name}})
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
@@ -182,7 +181,8 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     CREATE CONSTRAINT c_Person FOR (x:Person) REQUIRE x.id IS UNIQUE;
     """
 
-    # exe(driver, q1, q2, q3, q4)  
+    # exe(driver, q1, q2)  
+    # exe(driver, q3, q4)  
 
     # -------------------------------------------------
     # 08 Forum
@@ -198,8 +198,7 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/Forum.csv' AS r FIELDTERMINATOR '|'
     CALL {{
       WITH r
-      MERGE (x:Forum {{id:r.id}})
-        ON CREATE SET x.name = r.name
+      CREATE (x:Forum {{id:r.id, name:r.name}})
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
@@ -207,7 +206,8 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     CREATE CONSTRAINT c_Forum FOR (x:Forum) REQUIRE x.id IS UNIQUE;
     """
 
-    # exe(driver, q1, q2, q3, q4)  
+    # exe(driver, q1, q2)  
+    # exe(driver, q3, q4)  
 
     # -------------------------------------------------
     # 09 Message
@@ -216,15 +216,18 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     DROP CONSTRAINT c_Message;
     """
     q2 = f"""
-    MATCH (x:Message) DETACH DELETE x;
+    call apoc.periodic.iterate(
+      'MATCH (x:Message) return x', 
+      'DETACH DELETE x', 
+      {{batchSize:100000, batchMode:"BATCH"}}
+    )
     """
 
     q3 = f"""
     LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/Message.csv' AS r FIELDTERMINATOR '|'
     CALL {{
       WITH r
-      MERGE (x:Message {{id:r.id}})
-        ON CREATE SET x.length = r.length, x.parentmessageid = r.parentmessageid
+      CREATE (x:Message {{id:r.id, length:r.length, parentmessageid:r.parentmessageid}})
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
@@ -232,7 +235,8 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     CREATE CONSTRAINT c_Message FOR (x:Message) REQUIRE x.id IS UNIQUE;
     """
 
-    exe(driver, q2, q3, q4)  
+    # exe(driver, q1, q2)  
+    exe(driver, q3, q4)  
 
     # -------------------------------------------------
     # xxx
@@ -257,7 +261,8 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     CREATE CONSTRAINT xxx FOR (x:xxx) REQUIRE x.id IS UNIQUE;
     """
 
-    # exe(driver, q1, q2, q3, q4)  
+    # exe(driver, q1, q2)  
+    # exe(driver, q3, q4)  
 
     # -------------------------------------------------
     # xxx
@@ -282,7 +287,8 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     CREATE CONSTRAINT xxx FOR (x:xxx) REQUIRE x.id IS UNIQUE;
     """
 
-    # exe(driver, q1, q2, q3, q4)  
+    # exe(driver, q1, q2)  
+    # exe(driver, q3, q4)  
 
 
 
