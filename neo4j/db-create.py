@@ -227,7 +227,7 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/Message.csv' AS r FIELDTERMINATOR '|'
     CALL {{
       WITH r
-      CREATE (x:Message {{id:r.id, length:r.length, parentmessageid:r.parentmessageid}})
+      CREATE (x:Message {{id:r.id, length:r.length, ParentMessageId:r.ParentMessageId}})
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
@@ -236,59 +236,238 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     """
 
     # exe(driver, q1, q2)  
-    exe(driver, q3, q4)  
-
-    # -------------------------------------------------
-    # xxx
-    # -------------------------------------------------
-    q1 = f"""
-    DROP CONSTRAINT xxx;
-    """
-    q2 = f"""
-    MATCH (x:xxx) DETACH DELETE x;
-    """
-
-    q3 = f"""
-    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/xxx.csv' AS r FIELDTERMINATOR '|'
-    CALL {{
-      WITH r
-      MERGE (x:xxx {{id:r.id}})
-        ON CREATE SET x.name = r.name
-    }} IN TRANSACTIONS OF 100000 ROWS;
-    """
-
-    q4 = f"""
-    CREATE CONSTRAINT xxx FOR (x:xxx) REQUIRE x.id IS UNIQUE;
-    """
-
-    # exe(driver, q1, q2)  
     # exe(driver, q3, q4)  
 
     # -------------------------------------------------
-    # xxx
+    # 09a Post, Comment
     # -------------------------------------------------
     q1 = f"""
-    DROP CONSTRAINT xxx;
+    MATCH (x:Message) where x.ParentMessageId is null set x:Post;
     """
     q2 = f"""
-    MATCH (x:xxx) DETACH DELETE x;
-    """
-
-    q3 = f"""
-    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/xxx.csv' AS r FIELDTERMINATOR '|'
-    CALL {{
-      WITH r
-      MERGE (x:xxx {{id:r.id}})
-        ON CREATE SET x.name = r.name
-    }} IN TRANSACTIONS OF 100000 ROWS;
-    """
-
-    q4 = f"""
-    CREATE CONSTRAINT xxx FOR (x:xxx) REQUIRE x.id IS UNIQUE;
+    MATCH (x:Message) where x.ParentMessageId is not null set x:Comment;
     """
 
     # exe(driver, q1, q2)  
-    # exe(driver, q3, q4)  
+
+    # -------------------------------------------------
+    # HAS_TYPE
+    # -------------------------------------------------
+    q1 = f"""
+    MATCH (x:Tag)-[z:HAS_TYPE]->(y:TagClass) DETACH DELETE z;
+    """
+
+    q2 = f"""
+    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/zzz.csv' AS r FIELDTERMINATOR '|'
+    CALL {{
+      WITH r
+      MATCH (x:Tag {{id: r.id}})
+      MATCH (y:TagClass {{id: r.TypeTagClassId}})
+      CREATE (x)-[:HAS_TYPE]->(y)
+    }} IN TRANSACTIONS OF 100000 ROWS;
+    """
+
+    # exe(driver, q1, q2)  
+
+    # -------------------------------------------------
+    # zzz
+    # -------------------------------------------------
+    q1 = f"""
+    MATCH (x:xxx)-[z:zzz]->(y:yyy) DETACH DELETE z;
+    """
+
+    q2 = f"""
+    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/zzz.csv' AS r FIELDTERMINATOR '|'
+    CALL {{
+      WITH r
+      MATCH (x:xxx {{id: r.iii}})
+      MATCH (y:yyy {{id: r.iii}})
+      CREATE (x)-[:zzz]->(y)
+    }} IN TRANSACTIONS OF 100000 ROWS;
+    """
+
+    # exe(driver, q1, q2)  
+
+
+    # -------------------------------------------------
+    # zzz
+    # -------------------------------------------------
+    q1 = f"""
+    MATCH (x:xxx)-[z:zzz]->(y:yyy) DETACH DELETE z;
+    """
+
+    q2 = f"""
+    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/zzz.csv' AS r FIELDTERMINATOR '|'
+    CALL {{
+      WITH r
+      MATCH (x:xxx {{id: r.iii}})
+      MATCH (y:yyy {{id: r.iii}})
+      CREATE (x)-[:zzz]->(y)
+    }} IN TRANSACTIONS OF 100000 ROWS;
+    """
+
+    # exe(driver, q1, q2)  
+
+
+    # -------------------------------------------------
+    # zzz
+    # -------------------------------------------------
+    q1 = f"""
+    MATCH (x:xxx)-[z:zzz]->(y:yyy) DETACH DELETE z;
+    """
+
+    q2 = f"""
+    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/zzz.csv' AS r FIELDTERMINATOR '|'
+    CALL {{
+      WITH r
+      MATCH (x:xxx {{id: r.iii}})
+      MATCH (y:yyy {{id: r.iii}})
+      CREATE (x)-[:zzz]->(y)
+    }} IN TRANSACTIONS OF 100000 ROWS;
+    """
+
+    # exe(driver, q1, q2)  
+
+
+    # -------------------------------------------------
+    # zzz
+    # -------------------------------------------------
+    q1 = f"""
+    MATCH (x:xxx)-[z:zzz]->(y:yyy) DETACH DELETE z;
+    """
+
+    q2 = f"""
+    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/zzz.csv' AS r FIELDTERMINATOR '|'
+    CALL {{
+      WITH r
+      MATCH (x:xxx {{id: r.iii}})
+      MATCH (y:yyy {{id: r.iii}})
+      CREATE (x)-[:zzz]->(y)
+    }} IN TRANSACTIONS OF 100000 ROWS;
+    """
+
+    # exe(driver, q1, q2)  
+
+
+    # -------------------------------------------------
+    # zzz
+    # -------------------------------------------------
+    q1 = f"""
+    MATCH (x:xxx)-[z:zzz]->(y:yyy) DETACH DELETE z;
+    """
+
+    q2 = f"""
+    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/zzz.csv' AS r FIELDTERMINATOR '|'
+    CALL {{
+      WITH r
+      MATCH (x:xxx {{id: r.iii}})
+      MATCH (y:yyy {{id: r.iii}})
+      CREATE (x)-[:zzz]->(y)
+    }} IN TRANSACTIONS OF 100000 ROWS;
+    """
+
+    # exe(driver, q1, q2)  
+
+
+    # -------------------------------------------------
+    # zzz
+    # -------------------------------------------------
+    q1 = f"""
+    MATCH (x:xxx)-[z:zzz]->(y:yyy) DETACH DELETE z;
+    """
+
+    q2 = f"""
+    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/zzz.csv' AS r FIELDTERMINATOR '|'
+    CALL {{
+      WITH r
+      MATCH (x:xxx {{id: r.iii}})
+      MATCH (y:yyy {{id: r.iii}})
+      CREATE (x)-[:zzz]->(y)
+    }} IN TRANSACTIONS OF 100000 ROWS;
+    """
+
+    # exe(driver, q1, q2)  
+
+
+    # -------------------------------------------------
+    # zzz
+    # -------------------------------------------------
+    q1 = f"""
+    MATCH (x:xxx)-[z:zzz]->(y:yyy) DETACH DELETE z;
+    """
+
+    q2 = f"""
+    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/zzz.csv' AS r FIELDTERMINATOR '|'
+    CALL {{
+      WITH r
+      MATCH (x:xxx {{id: r.iii}})
+      MATCH (y:yyy {{id: r.iii}})
+      CREATE (x)-[:zzz]->(y)
+    }} IN TRANSACTIONS OF 100000 ROWS;
+    """
+
+    # exe(driver, q1, q2)  
+
+
+    # -------------------------------------------------
+    # zzz
+    # -------------------------------------------------
+    q1 = f"""
+    MATCH (x:xxx)-[z:zzz]->(y:yyy) DETACH DELETE z;
+    """
+
+    q2 = f"""
+    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/zzz.csv' AS r FIELDTERMINATOR '|'
+    CALL {{
+      WITH r
+      MATCH (x:xxx {{id: r.iii}})
+      MATCH (y:yyy {{id: r.iii}})
+      CREATE (x)-[:zzz]->(y)
+    }} IN TRANSACTIONS OF 100000 ROWS;
+    """
+
+    # exe(driver, q1, q2)  
+
+
+    # -------------------------------------------------
+    # zzz
+    # -------------------------------------------------
+    q1 = f"""
+    MATCH (x:xxx)-[z:zzz]->(y:yyy) DETACH DELETE z;
+    """
+
+    q2 = f"""
+    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/zzz.csv' AS r FIELDTERMINATOR '|'
+    CALL {{
+      WITH r
+      MATCH (x:xxx {{id: r.iii}})
+      MATCH (y:yyy {{id: r.iii}})
+      CREATE (x)-[:zzz]->(y)
+    }} IN TRANSACTIONS OF 100000 ROWS;
+    """
+
+    # exe(driver, q1, q2)  
+
+
+    # -------------------------------------------------
+    # zzz
+    # -------------------------------------------------
+    q1 = f"""
+    MATCH (x:xxx)-[z:zzz]->(y:yyy) DETACH DELETE z;
+    """
+
+    q2 = f"""
+    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/zzz.csv' AS r FIELDTERMINATOR '|'
+    CALL {{
+      WITH r
+      MATCH (x:xxx {{id: r.iii}})
+      MATCH (y:yyy {{id: r.iii}})
+      CREATE (x)-[:zzz]->(y)
+    }} IN TRANSACTIONS OF 100000 ROWS;
+    """
+
+    # exe(driver, q1, q2)  
+
 
 
 
