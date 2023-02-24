@@ -8,7 +8,8 @@ pd.set_option("display.max_columns", None)
 
 with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password)) as driver:
     q = f"MATCH (x:Tag) return count(*);"
-    q = f"MATCH (x:Tag)-[:HAS_TYPE]->(y:TagClass) return count(*);"
+    rel = "(x:Forum)-[z:CONTAINER_OF]->(y:Post)"
+    q = f"MATCH {rel} return count(*);"
     with driver.session() as session:
         rs = session.run(q)
         df = pd.DataFrame(rs.data())
