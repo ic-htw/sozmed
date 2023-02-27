@@ -20,10 +20,13 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     """
 
     q3 = f"""
-    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/TagClass.csv' AS r FIELDTERMINATOR '|'
+    LOAD CSV WITH HEADERS FROM 'file:///sozmed/TagClass.csv' AS r FIELDTERMINATOR '|'
     CALL {{
       WITH r
-      CREATE (x:TagClass {{id:r.id, name:r.name}})
+      CREATE (x:TagClass {{
+        id: toInteger(r.id), 
+        name: r.name
+        }})
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
@@ -45,10 +48,13 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     """
 
     q3 = f"""
-    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/Tag.csv' AS r FIELDTERMINATOR '|'
+    LOAD CSV WITH HEADERS FROM 'file:///sozmed/Tag.csv' AS r FIELDTERMINATOR '|'
     CALL {{
       WITH r
-      CREATE (x:Tag {{id:r.id, name:r.name}})
+      CREATE (x:Tag {{
+        id: toInteger(r.id), 
+        name: r.name
+        }})
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
@@ -70,10 +76,13 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     """
 
     q3 = f"""
-    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/Country.csv' AS r FIELDTERMINATOR '|'
+    LOAD CSV WITH HEADERS FROM 'file:///sozmed/Country.csv' AS r FIELDTERMINATOR '|'
     CALL {{
       WITH r
-      CREATE (x:Country {{id:r.id, name:r.name}})
+      CREATE (x:Country {{
+        id: toInteger(r.id), 
+        name: r.name
+        }})
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
@@ -95,10 +104,13 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     """
 
     q3 = f"""
-    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/City.csv' AS r FIELDTERMINATOR '|'
+    LOAD CSV WITH HEADERS FROM 'file:///sozmed/City.csv' AS r FIELDTERMINATOR '|'
     CALL {{
       WITH r
-      CREATE (x:City {{id:r.id, name:r.name}})
+      CREATE (x:City {{
+        id: toInteger(r.id), 
+        name: r.name
+        }})
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
@@ -120,10 +132,13 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     """
 
     q3 = f"""
-    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/Company.csv' AS r FIELDTERMINATOR '|'
+    LOAD CSV WITH HEADERS FROM 'file:///sozmed/Company.csv' AS r FIELDTERMINATOR '|'
     CALL {{
       WITH r
-      CREATE (x:Company {{id:r.id, name:r.name}})
+      CREATE (x:Company {{
+        id: toInteger(r.id), 
+        name: r.name
+        }})
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
@@ -145,10 +160,13 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     """
 
     q3 = f"""
-    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/University.csv' AS r FIELDTERMINATOR '|'
+    LOAD CSV WITH HEADERS FROM 'file:///sozmed/University.csv' AS r FIELDTERMINATOR '|'
     CALL {{
       WITH r
-      CREATE (x:University {{id:r.id, name:r.name}})
+      CREATE (x:University {{
+        id: toInteger(r.id), 
+        name:r.name
+        }})
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
@@ -170,10 +188,14 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     """
 
     q3 = f"""
-    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/Person.csv' AS r FIELDTERMINATOR '|'
+    LOAD CSV WITH HEADERS FROM 'file:///sozmed/Person.csv' AS r FIELDTERMINATOR '|'
     CALL {{
       WITH r
-      CREATE (x:Person {{id:r.id, name:r.name}})
+      CREATE (x:Person {{
+        id: toInteger(r.id), 
+        lastName: r.lastName, 
+        creationDate: datetime(replace(r.creationDate, ' ', 'T'))
+        }})
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
@@ -183,6 +205,7 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
 
     # exe(driver, q1, q2)  
     # exe(driver, q3, q4)  
+  
 
     # -------------------------------------------------
     # 08 Forum
@@ -195,10 +218,14 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     """
 
     q3 = f"""
-    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/Forum.csv' AS r FIELDTERMINATOR '|'
+    LOAD CSV WITH HEADERS FROM 'file:///sozmed/Forum.csv' AS r FIELDTERMINATOR '|'
     CALL {{
       WITH r
-      CREATE (x:Forum {{id:r.id, name:r.name}})
+      CREATE (x:Forum {{
+        id: toInteger(r.id), 
+        name: r.name, 
+        creationDate: datetime(replace(r.creationDate, ' ', 'T'))
+        }})
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
@@ -224,13 +251,15 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     """
 
     q3 = f"""
-    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/Message.csv' AS r FIELDTERMINATOR '|'
+    LOAD CSV WITH HEADERS FROM 'file:///sozmed/Message.csv' AS r FIELDTERMINATOR '|'
     CALL {{
       WITH r
       CREATE (x:Message {{
-        id:r.id, 
-        length:r.length,
-        ParentMessageId:r.ParentMessageId}})
+        id: toInteger(r.id), 
+        length: toInteger(r.length),
+        ParentMessageId: toInteger(r.ParentMessageId), 
+        creationDate: datetime(replace(r.creationDate, ' ', 'T'))
+        }})
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
@@ -254,7 +283,8 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     CREATE CONSTRAINT c_Post FOR (x:Post) REQUIRE x.id IS UNIQUE;
     """
 
-    # exe(driver, q1, q2, q3)  
+    # exe(driver, q1)  
+    # exe(driver, q2, q3)  
 
     # -------------------------------------------------
     # 09b Comment
@@ -269,8 +299,28 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     CREATE CONSTRAINT c_Comment FOR (x:Comment) REQUIRE x.id IS UNIQUE;
     """
 
-    # exe(driver, q1, q2, q3)  
+    # exe(driver, q1)  
+    # exe(driver, q2, q3)  
 
+
+    # -------------------------------------------------
+    # IS_SUBCLASS_OF
+    # -------------------------------------------------
+    q1 = f"""
+    MATCH (x:TagClass)-[z:IS_SUBCLASS_OF]->(y:TagClass) DETACH DELETE z;
+    """
+
+    q2 = f"""
+    LOAD CSV WITH HEADERS FROM 'file:///sozmed/TagClass.csv' AS r FIELDTERMINATOR '|'
+    CALL {{
+      WITH r
+      MATCH (x:TagClass {{id: toInteger(r.id)}})
+      MATCH (y:TagClass {{id: toInteger(r.SubclassOfTagClassId)}})
+      CREATE (x)-[:IS_SUBCLASS_OF]->(y)
+    }} IN TRANSACTIONS OF 100000 ROWS;
+    """
+
+    # exe(driver, q1, q2)  
 
     # -------------------------------------------------
     # HAS_TYPE
@@ -280,11 +330,11 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     """
 
     q2 = f"""
-    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/zzz.csv' AS r FIELDTERMINATOR '|'
+    LOAD CSV WITH HEADERS FROM 'file:///sozmed/Tag.csv' AS r FIELDTERMINATOR '|'
     CALL {{
       WITH r
-      MATCH (x:Tag {{id: r.id}})
-      MATCH (y:TagClass {{id: r.TypeTagClassId}})
+      MATCH (x:Tag {{id: toInteger(r.id)}})
+      MATCH (y:TagClass {{id: toInteger(r.TypeTagClassId)}})
       CREATE (x)-[:HAS_TYPE]->(y)
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
@@ -299,11 +349,11 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     """
 
     q2 = f"""
-    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/City.csv' AS r FIELDTERMINATOR '|'
+    LOAD CSV WITH HEADERS FROM 'file:///sozmed/City.csv' AS r FIELDTERMINATOR '|'
     CALL {{
       WITH r
-      MATCH (x:City {{id: r.id}})
-      MATCH (y:Country {{id: r.PartOfCountryId}})
+      MATCH (x:City {{id: toInteger(r.id)}})
+      MATCH (y:Country {{id: toInteger(r.PartOfCountryId)}})
       CREATE (x)-[:IS_PART_OF]->(y)
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
@@ -319,11 +369,11 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     """
 
     q2 = f"""
-    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/Company.csv' AS r FIELDTERMINATOR '|'
+    LOAD CSV WITH HEADERS FROM 'file:///sozmed/Company.csv' AS r FIELDTERMINATOR '|'
     CALL {{
       WITH r
-      MATCH (x:Company {{id: r.id}})
-      MATCH (y:Country {{id: r.LocationPlaceId}})
+      MATCH (x:Company {{id: toInteger(r.id)}})
+      MATCH (y:Country {{id: toInteger(r.LocationPlaceId)}})
       CREATE (x)-[:IS_LOCATED_IN]->(y)
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
@@ -339,11 +389,11 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     """
 
     q2 = f"""
-    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/University.csv' AS r FIELDTERMINATOR '|'
+    LOAD CSV WITH HEADERS FROM 'file:///sozmed/University.csv' AS r FIELDTERMINATOR '|'
     CALL {{
       WITH r
-      MATCH (x:University {{id: r.id}})
-      MATCH (y:City {{id: r.LocationPlaceId}})
+      MATCH (x:University {{id: toInteger(r.id)}})
+      MATCH (y:City {{id: toInteger(r.LocationPlaceId)}})
       CREATE (x)-[:IS_LOCATED_IN]->(y)
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
@@ -359,11 +409,11 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     """
 
     q2 = f"""
-    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/Person.csv' AS r FIELDTERMINATOR '|'
+    LOAD CSV WITH HEADERS FROM 'file:///sozmed/Person.csv' AS r FIELDTERMINATOR '|'
     CALL {{
       WITH r
-      MATCH (x:Person {{id: r.id}})
-      MATCH (y:City {{id: r.LocationCityId}})
+      MATCH (x:Person {{id: toInteger(r.id)}})
+      MATCH (y:City {{id: toInteger(r.LocationCityId)}})
       CREATE (x)-[:IS_LOCATED_IN]->(y)
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
@@ -379,11 +429,11 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     """
 
     q2 = f"""
-    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/Message.csv' AS r FIELDTERMINATOR '|'
+    LOAD CSV WITH HEADERS FROM 'file:///sozmed/Message.csv' AS r FIELDTERMINATOR '|'
     CALL {{
       WITH r
-      MATCH (x:Message {{id: r.id}})
-      MATCH (y:Country {{id: r.LocationCountryId}})
+      MATCH (x:Message {{id: toInteger(r.id)}})
+      MATCH (y:Country {{id: toInteger(r.LocationCountryId)}})
       CREATE (x)-[:IS_LOCATED_IN]->(y)
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
@@ -399,12 +449,12 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     """
 
     q2 = f"""
-    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/Person_studyAt_University.csv' AS r FIELDTERMINATOR '|'
+    LOAD CSV WITH HEADERS FROM 'file:///sozmed/Person_studyAt_University.csv' AS r FIELDTERMINATOR '|'
     CALL {{
       WITH r
-      MATCH (x:Person {{id: r.PersonId}})
-      MATCH (y:University {{id: r.UniversityId}})
-      CREATE (x)-[:STUDY_AT]->(y)
+      MATCH (x:Person {{id: toInteger(r.PersonId)}})
+      MATCH (y:University {{id: toInteger(r.UniversityId)}})
+      CREATE (x)-[:STUDY_AT {{creationDate: datetime(replace(r.creationDate, ' ', 'T'))}}]->(y)
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
@@ -419,12 +469,12 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     """
 
     q2 = f"""
-    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/Person_workAt_Company.csv' AS r FIELDTERMINATOR '|'
+    LOAD CSV WITH HEADERS FROM 'file:///sozmed/Person_workAt_Company.csv' AS r FIELDTERMINATOR '|'
     CALL {{
       WITH r
-      MATCH (x:Person {{id: r.PersonId}})
-      MATCH (y:Company {{id: r.CompanyId}})
-      CREATE (x)-[:WORK_AT]->(y)
+      MATCH (x:Person {{id: toInteger(r.PersonId)}})
+      MATCH (y:Company {{id: toInteger(r.CompanyId)}})
+      CREATE (x)-[:WORK_AT {{creationDate: datetime(replace(r.creationDate, ' ', 'T'))}}]->(y)
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
@@ -439,12 +489,12 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     """
 
     q2 = f"""
-    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/Person_knows_Person.csv' AS r FIELDTERMINATOR '|'
+    LOAD CSV WITH HEADERS FROM 'file:///sozmed/Person_knows_Person.csv' AS r FIELDTERMINATOR '|'
     CALL {{
       WITH r
-      MATCH (x:Person {{id: r.Person1Id}})
-      MATCH (y:Person {{id: r.Person2Id}})
-      CREATE (x)-[:KNOWS]->(y)
+      MATCH (x:Person {{id: toInteger(r.Person1Id)}})
+      MATCH (y:Person {{id: toInteger(r.Person2Id)}})
+      CREATE (x)-[:KNOWS {{creationDate: datetime(replace(r.creationDate, ' ', 'T'))}}]->(y)
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
@@ -459,12 +509,12 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     """
 
     q2 = f"""
-    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/Person_hasInterest_Tag.csv' AS r FIELDTERMINATOR '|'
+    LOAD CSV WITH HEADERS FROM 'file:///sozmed/Person_hasInterest_Tag.csv' AS r FIELDTERMINATOR '|'
     CALL {{
       WITH r
-      MATCH (x:Person {{id: r.PersonId}})
-      MATCH (y:Tag {{id: r.TagId}})
-      CREATE (x)-[:HAS_INTEREST]->(y)
+      MATCH (x:Person {{id: toInteger(r.PersonId)}})
+      MATCH (y:Tag {{id: toInteger(r.TagId)}})
+      CREATE (x)-[:HAS_INTEREST {{creationDate: datetime(replace(r.creationDate, ' ', 'T'))}}]->(y)
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
@@ -478,12 +528,12 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     """
 
     q2 = f"""
-    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/Person_likes_Message.csv' AS r FIELDTERMINATOR '|'
+    LOAD CSV WITH HEADERS FROM 'file:///sozmed/Person_likes_Message.csv' AS r FIELDTERMINATOR '|'
     CALL {{
       WITH r
-      MATCH (x:Person {{id: r.PersonId}})
-      MATCH (y:Message {{id: r.id}})
-      CREATE (x)-[:LIKES]->(y)
+      MATCH (x:Person {{id: toInteger(r.PersonId)}})
+      MATCH (y:Message {{id: toInteger(r.id)}})
+      CREATE (x)-[:LIKES {{creationDate: datetime(replace(r.creationDate, ' ', 'T'))}}]->(y)
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
@@ -499,12 +549,12 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     """
 
     q2 = f"""
-    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/Forum_hasMember_Person.csv' AS r FIELDTERMINATOR '|'
+    LOAD CSV WITH HEADERS FROM 'file:///sozmed/Forum_hasMember_Person.csv' AS r FIELDTERMINATOR '|'
     CALL {{
       WITH r
-      MATCH (x:Forum {{id: r.ForumId}})
-      MATCH (y:Person {{id: r.PersonId}})
-      CREATE (x)-[:HAS_MEMBER]->(y)
+      MATCH (x:Forum {{id: toInteger(r.ForumId)}})
+      MATCH (y:Person {{id: toInteger(r.PersonId)}})
+      CREATE (x)-[:HAS_MEMBER {{creationDate: datetime(replace(r.creationDate, ' ', 'T'))}}]->(y)
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
@@ -518,12 +568,12 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     """
 
     q2 = f"""
-    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/Forum_hasTag_Tag.csv' AS r FIELDTERMINATOR '|'
+    LOAD CSV WITH HEADERS FROM 'file:///sozmed/Forum_hasTag_Tag.csv' AS r FIELDTERMINATOR '|'
     CALL {{
       WITH r
-      MATCH (x:Forum {{id: r.ForumId}})
-      MATCH (y:Tag {{id: r.TagId}})
-      CREATE (x)-[:HAS_TAG]->(y)
+      MATCH (x:Forum {{id: toInteger(r.ForumId)}})
+      MATCH (y:Tag {{id: toInteger(r.TagId)}})
+      CREATE (x)-[:HAS_TAG {{creationDate: datetime(replace(r.creationDate, ' ', 'T'))}}]->(y)
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
@@ -537,11 +587,11 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     """
 
     q2 = f"""
-    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/Forum.csv' AS r FIELDTERMINATOR '|'
+    LOAD CSV WITH HEADERS FROM 'file:///sozmed/Forum.csv' AS r FIELDTERMINATOR '|'
     CALL {{
       WITH r
-      MATCH (x:Forum {{id: r.id}})
-      MATCH (y:Person {{id: r.ModeratorPersonId}})
+      MATCH (x:Forum {{id: toInteger(r.id)}})
+      MATCH (y:Person {{id: toInteger(r.ModeratorPersonId)}})
       CREATE (x)-[:HAS_MODERATOR]->(y)
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
@@ -556,16 +606,16 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     """
 
     q2 = f"""
-    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/Message.csv' AS r FIELDTERMINATOR '|'
+    LOAD CSV WITH HEADERS FROM 'file:///sozmed/Message.csv' AS r FIELDTERMINATOR '|'
     CALL {{
       WITH r
-      MATCH (x:Forum {{id: r.ContainerForumId}})
-      MATCH (y:Post {{id: r.id}})
+      MATCH (x:Forum {{id: toInteger(r.ContainerForumId)}})
+      MATCH (y:Post {{id: toInteger(r.id)}})
       CREATE (x)-[:CONTAINER_OF]->(y)
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
-    exe(driver, q1, q2)  
+    # exe(driver, q1, q2)  
 
     # -------------------------------------------------
     # HAS_CREATOR
@@ -575,11 +625,11 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     """
 
     q2 = f"""
-    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/Message.csv' AS r FIELDTERMINATOR '|'
+    LOAD CSV WITH HEADERS FROM 'file:///sozmed/Message.csv' AS r FIELDTERMINATOR '|'
     CALL {{
       WITH r
-      MATCH (x:Message {{id: r.id}})
-      MATCH (y:Person {{id: r.CreatorPersonId}})
+      MATCH (x:Message {{id: toInteger(r.id)}})
+      MATCH (y:Person {{id: toInteger(r.CreatorPersonId)}})
       CREATE (x)-[:HAS_CREATOR]->(y)
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
@@ -587,19 +637,38 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     # exe(driver, q1, q2)  
 
     # -------------------------------------------------
-    # zzz
+    # HAS_TAG
     # -------------------------------------------------
     q1 = f"""
-    MATCH (x:xxx)-[z:zzz]->(y:yyy) DETACH DELETE z;
+    MATCH (x:Message)-[z:HAS_TAG]->(y:Tag) DETACH DELETE z;
     """
 
     q2 = f"""
-    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/zzz.csv' AS r FIELDTERMINATOR '|'
+    LOAD CSV WITH HEADERS FROM 'file:///sozmed/Message_hasTag_Tag.csv' AS r FIELDTERMINATOR '|'
     CALL {{
       WITH r
-      MATCH (x:xxx {{id: r.iii}})
-      MATCH (y:yyy {{id: r.iii}})
-      CREATE (x)-[:zzz]->(y)
+      MATCH (x:Message {{id: toInteger(r.id)}})
+      MATCH (y:Tag {{id: toInteger(r.TagId)}})
+      CREATE (x)-[:HAS_TAG {{creationDate: datetime(replace(r.creationDate, ' ', 'T'))}}]->(y)
+    }} IN TRANSACTIONS OF 100000 ROWS;
+    """
+
+    # exe(driver, q1, q2)  
+
+    # -------------------------------------------------
+    # REPLY_OF
+    # -------------------------------------------------
+    q1 = f"""
+    MATCH (x:Comment)-[z:REPLY_OF]->(y:Message) DETACH DELETE z;
+    """
+
+    q2 = f"""
+    LOAD CSV WITH HEADERS FROM 'file:///sozmed/Message.csv' AS r FIELDTERMINATOR '|'
+    CALL {{
+      WITH r
+      MATCH (x:Comment {{id: toInteger(r.id)}})
+      MATCH (y:Message {{id: toInteger(r.ParentMessageId)}})
+      CREATE (x)-[:REPLY_OF]->(y)
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
@@ -613,26 +682,7 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     """
 
     q2 = f"""
-    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/zzz.csv' AS r FIELDTERMINATOR '|'
-    CALL {{
-      WITH r
-      MATCH (x:xxx {{id: r.iii}})
-      MATCH (y:yyy {{id: r.iii}})
-      CREATE (x)-[:zzz]->(y)
-    }} IN TRANSACTIONS OF 100000 ROWS;
-    """
-
-    # exe(driver, q1, q2)  
-
-    # -------------------------------------------------
-    # zzz
-    # -------------------------------------------------
-    q1 = f"""
-    MATCH (x:xxx)-[z:zzz]->(y:yyy) DETACH DELETE z;
-    """
-
-    q2 = f"""
-    LOAD CSV WITH HEADERS FROM 'file:///csv/sozmed/zzz.csv' AS r FIELDTERMINATOR '|'
+    LOAD CSV WITH HEADERS FROM 'file:///sozmed/zzz.csv' AS r FIELDTERMINATOR '|'
     CALL {{
       WITH r
       MATCH (x:xxx {{id: r.iii}})
