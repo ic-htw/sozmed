@@ -1,0 +1,44 @@
+            labels(x)  count(*)
+0          [TagClass]        71
+1               [Tag]     16080
+2           [Country]       111
+3              [City]      1343
+4           [Company]      1575
+5        [University]      6380
+6            [Person]     10295
+7             [Forum]    100827
+8     [Message, Post]   1121226
+9  [Message, Comment]   1739438
+
+2860664: messages
+1121226: posts
+1739438: comments
+
+
+
+             labels(x)         type(r)           labels(y)  count(*)
+0           [TagClass]  IS_SUBCLASS_OF          [TagClass]        70
+1                [Tag]        HAS_TYPE          [TagClass]     16080
+2               [City]      IS_PART_OF           [Country]      1343
+3            [Company]   IS_LOCATED_IN           [Country]      1575
+4         [University]   IS_LOCATED_IN              [City]      6380
+5             [Person]   IS_LOCATED_IN              [City]     10295
+6      [Message, Post]   IS_LOCATED_IN           [Country]   1121226
+7   [Message, Comment]   IS_LOCATED_IN           [Country]   1739438
+8             [Person]        STUDY_AT        [University]      8309
+9             [Person]         WORK_AT           [Company]     22044
+10            [Person]           KNOWS            [Person]    173014
+11            [Person]    HAS_INTEREST               [Tag]    238052
+12            [Person]           LIKES     [Message, Post]    760455
+13            [Person]           LIKES  [Message, Comment]   1109813
+14             [Forum]      HAS_MEMBER            [Person]   2909768
+15             [Forum]         HAS_TAG               [Tag]    328584
+16             [Forum]   HAS_MODERATOR            [Person]    100827
+17             [Forum]    CONTAINER_OF     [Message, Post]   1121226
+18     [Message, Post]     HAS_CREATOR            [Person]   1121226
+19  [Message, Comment]     HAS_CREATOR            [Person]   1739438
+20     [Message, Post]         HAS_TAG               [Tag]    751933
+21  [Message, Comment]         HAS_TAG               [Tag]   2176131
+22  [Message, Comment]        REPLY_OF     [Message, Post]    950418
+23  [Message, Comment]        REPLY_OF  [Message, Comment]    789020
+

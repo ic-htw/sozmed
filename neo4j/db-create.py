@@ -1,6 +1,14 @@
 from neo4j import GraphDatabase
 import cred as c
 
+def exe1(driver, *qs):
+    pass
+    # exe(driver, *qs)
+    
+def exe2(driver, *qs):
+    # pass
+    exe(driver, *qs)
+    
 def exe(driver, *qs):
     with driver.session() as session:
         for q in qs:
@@ -11,6 +19,7 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     # -------------------------------------------------
     # 01 TagClass
     # -------------------------------------------------
+    print("01 TagClass")
     q1 = f"""
     DROP CONSTRAINT c_tagclass;
     """
@@ -34,12 +43,13 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     CREATE CONSTRAINT c_tagclass FOR (x:TagClass) REQUIRE x.id IS UNIQUE;
     """
 
-    # exe(driver, q1, q2)  
-    # exe(driver, q3, q4)  
+    exe1(driver, q1, q2)  
+    exe2(driver, q3, q4)  
 
     # -------------------------------------------------
     # 02 Tag
     # -------------------------------------------------
+    print("02 Tag")
     q1 = f"""
     DROP CONSTRAINT c_tag;
     """
@@ -62,12 +72,13 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     CREATE CONSTRAINT c_tag FOR (x:Tag) REQUIRE x.id IS UNIQUE;
     """
 
-    # exe(driver, q1, q2)  
-    # exe(driver, q3, q4)  
+    exe1(driver, q1, q2)  
+    exe2(driver, q3, q4)  
  
     # -------------------------------------------------
     # 03 Country
     # -------------------------------------------------
+    print("03 Country")
     q1 = f"""
     DROP CONSTRAINT c_Country;
     """
@@ -90,12 +101,13 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     CREATE CONSTRAINT c_Country FOR (x:Country) REQUIRE x.id IS UNIQUE;
     """
 
-    # exe(driver, q1, q2)  
-    # exe(driver, q3, q4)  
+    exe1(driver, q1, q2)  
+    exe2(driver, q3, q4)  
 
     # -------------------------------------------------
     # 04 City
     # -------------------------------------------------
+    print("04 City")
     q1 = f"""
     DROP CONSTRAINT c_City;
     """
@@ -118,12 +130,13 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     CREATE CONSTRAINT c_City FOR (x:City) REQUIRE x.id IS UNIQUE;
     """
 
-    # exe(driver, q1, q2)  
-    # exe(driver, q3, q4)  
+    exe1(driver, q1, q2)  
+    exe2(driver, q3, q4)  
 
     # -------------------------------------------------
     # 05 Company
     # -------------------------------------------------
+    print("05 Company")
     q1 = f"""
     DROP CONSTRAINT c_Company;
     """
@@ -146,12 +159,13 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     CREATE CONSTRAINT c_Company FOR (x:Company) REQUIRE x.id IS UNIQUE;
     """
 
-    # exe(driver, q1, q2)  
-    # exe(driver, q3, q4)  
+    exe1(driver, q1, q2)  
+    exe2(driver, q3, q4)  
 
     # -------------------------------------------------
     # 06 University
     # -------------------------------------------------
+    print("06 University")
     q1 = f"""
     DROP CONSTRAINT c_University;
     """
@@ -174,12 +188,13 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     CREATE CONSTRAINT c_University FOR (x:University) REQUIRE x.id IS UNIQUE;
     """
 
-    # exe(driver, q1, q2)  
-    # exe(driver, q3, q4)  
+    exe1(driver, q1, q2)  
+    exe2(driver, q3, q4)  
 
     # -------------------------------------------------
     # 07 Person
     # -------------------------------------------------
+    print("07 Person")
     q1 = f"""
     DROP CONSTRAINT c_Person;
     """
@@ -203,13 +218,14 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     CREATE CONSTRAINT c_Person FOR (x:Person) REQUIRE x.id IS UNIQUE;
     """
 
-    # exe(driver, q1, q2)  
-    # exe(driver, q3, q4)  
+    exe1(driver, q1, q2)  
+    exe2(driver, q3, q4)  
   
 
     # -------------------------------------------------
     # 08 Forum
     # -------------------------------------------------
+    print("08 Forum")
     q1 = f"""
     DROP CONSTRAINT c_Forum;
     """
@@ -233,12 +249,13 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     CREATE CONSTRAINT c_Forum FOR (x:Forum) REQUIRE x.id IS UNIQUE;
     """
 
-    # exe(driver, q1, q2)  
-    # exe(driver, q3, q4)  
+    exe1(driver, q1, q2)  
+    exe2(driver, q3, q4)  
 
     # -------------------------------------------------
     # 09 Message
     # -------------------------------------------------
+    print("09 Message")
     q1 = f"""
     DROP CONSTRAINT c_Message;
     """
@@ -267,12 +284,13 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     CREATE CONSTRAINT c_Message FOR (x:Message) REQUIRE x.id IS UNIQUE;
     """
 
-    # exe(driver, q1, q2)  
-    # exe(driver, q3, q4)  
+    exe1(driver, q1, q2)  
+    exe2(driver, q3, q4)  
 
     # -------------------------------------------------
     # 09a Post
     # -------------------------------------------------
+    print("09a Post")
     q1 = f"""
     DROP CONSTRAINT c_Post;
     """
@@ -283,12 +301,13 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     CREATE CONSTRAINT c_Post FOR (x:Post) REQUIRE x.id IS UNIQUE;
     """
 
-    # exe(driver, q1)  
-    # exe(driver, q2, q3)  
+    exe1(driver, q1)  
+    exe2(driver, q2, q3)  
 
     # -------------------------------------------------
     # 09b Comment
     # -------------------------------------------------
+    print("09b Comment")
     q1 = f"""
     DROP CONSTRAINT c_Comment;
     """
@@ -299,13 +318,14 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     CREATE CONSTRAINT c_Comment FOR (x:Comment) REQUIRE x.id IS UNIQUE;
     """
 
-    # exe(driver, q1)  
-    # exe(driver, q2, q3)  
+    exe1(driver, q1)  
+    exe2(driver, q2, q3)  
 
 
     # -------------------------------------------------
-    # IS_SUBCLASS_OF
+    # 10 IS_SUBCLASS_OF
     # -------------------------------------------------
+    print("10 IS_SUBCLASS_OF")
     q1 = f"""
     MATCH (x:TagClass)-[z:IS_SUBCLASS_OF]->(y:TagClass) DETACH DELETE z;
     """
@@ -320,11 +340,13 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
-    # exe(driver, q1, q2)  
+    exe1(driver, q1)  
+    exe2(driver, q2)  
 
     # -------------------------------------------------
-    # HAS_TYPE
+    # 11 HAS_TYPE
     # -------------------------------------------------
+    print("11 HAS_TYPE")
     q1 = f"""
     MATCH (x:Tag)-[z:HAS_TYPE]->(y:TagClass) DETACH DELETE z;
     """
@@ -339,11 +361,13 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
-    # exe(driver, q1, q2)  
+    exe1(driver, q1)  
+    exe2(driver, q2)  
 
     # -------------------------------------------------
-    # IS_PART_OF
+    # 12 IS_PART_OF
     # -------------------------------------------------
+    print("12 IS_PART_OF")
     q1 = f"""
     MATCH (x:City)-[z:IS_PART_OF]->(y:Country) DETACH DELETE z;
     """
@@ -358,12 +382,14 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
-    # exe(driver, q1, q2)  
+    exe1(driver, q1)  
+    exe2(driver, q2)  
 
 
     # -------------------------------------------------
-    # IS_LOCATED_IN
+    # 13 IS_LOCATED_IN
     # -------------------------------------------------
+    print("13 IS_LOCATED_IN")
     q1 = f"""
     MATCH (x:Company)-[z:IS_LOCATED_IN]->(y:Country) DETACH DELETE z;
     """
@@ -378,12 +404,14 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
-    # exe(driver, q1, q2)  
+    exe1(driver, q1)  
+    exe2(driver, q2)  
 
 
     # -------------------------------------------------
-    # IS_LOCATED_IN
+    # 14 IS_LOCATED_IN
     # -------------------------------------------------
+    print("14 IS_LOCATED_IN")
     q1 = f"""
     MATCH (x:University)-[z:IS_LOCATED_IN]->(y:City) DETACH DELETE z;
     """
@@ -398,12 +426,14 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
-    # exe(driver, q1, q2)  
+    exe1(driver, q1)  
+    exe2(driver, q2)  
 
 
     # -------------------------------------------------
-    # IS_LOCATED_IN
+    # 15 IS_LOCATED_IN
     # -------------------------------------------------
+    print("15 IS_LOCATED_IN")
     q1 = f"""
     MATCH (x:Person)-[z:IS_LOCATED_IN]->(y:City) DETACH DELETE z;
     """
@@ -418,12 +448,14 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
-    # exe(driver, q1, q2)  
+    exe1(driver, q1)  
+    exe2(driver, q2)  
 
 
     # -------------------------------------------------
-    # IS_LOCATED_IN
+    # 16 IS_LOCATED_IN
     # -------------------------------------------------
+    print("16 IS_LOCATED_IN")
     q1 = f"""
     MATCH (x:Message)-[z:IS_LOCATED_IN]->(y:Country) DETACH DELETE z;
     """
@@ -438,12 +470,14 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
-    # exe(driver, q1, q2)  
+    exe1(driver, q1)  
+    exe2(driver, q2)  
 
 
     # -------------------------------------------------
-    # STUDY_AT
+    # 17 STUDY_AT
     # -------------------------------------------------
+    print("17 STUDY_AT")
     q1 = f"""
     MATCH (x:Person)-[z:STUDY_AT]->(y:University) DETACH DELETE z;
     """
@@ -458,12 +492,14 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
-    # exe(driver, q1, q2)  
+    exe1(driver, q1)  
+    exe2(driver, q2)  
 
 
     # -------------------------------------------------
-    # WORK_AT
+    # 18 WORK_AT
     # -------------------------------------------------
+    print("18 WORK_AT")
     q1 = f"""
     MATCH (x:Person)-[z:WORK_AT]->(y:Company) DETACH DELETE z;
     """
@@ -478,12 +514,14 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
-    # exe(driver, q1, q2)  
+    exe1(driver, q1)  
+    exe2(driver, q2)  
 
 
     # -------------------------------------------------
-    # KNOWS
+    # 19 KNOWS
     # -------------------------------------------------
+    print("19 KNOWS")
     q1 = f"""
     MATCH (x:Person)-[z:KNOWS]->(y:Person) DETACH DELETE z;
     """
@@ -498,12 +536,14 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
-    # exe(driver, q1, q2)  
+    exe1(driver, q1)  
+    exe2(driver, q2)  
 
 
     # -------------------------------------------------
-    # HAS_INTEREST
+    # 20 HAS_INTEREST
     # -------------------------------------------------
+    print("20 HAS_INTEREST")
     q1 = f"""
     MATCH (x:Person)-[z:HAS_INTEREST]->(y:Tag) DETACH DELETE z;
     """
@@ -518,11 +558,13 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
-    # exe(driver, q1, q2)  
+    exe1(driver, q1)  
+    exe2(driver, q2)  
 
     # -------------------------------------------------
-    # LIKES
+    # 21 LIKES
     # -------------------------------------------------
+    print("21 LIKES")
     q1 = f"""
     MATCH (x:Person)-[z:LIKES]->(y:Message) DETACH DELETE z;
     """
@@ -537,13 +579,15 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
-    # exe(driver, q1, q2)  
+    exe1(driver, q1)  
+    exe2(driver, q2)  
 
 
 
     # -------------------------------------------------
-    # HAS_MEMBER
+    # 22 HAS_MEMBER
     # -------------------------------------------------
+    print("22 HAS_MEMBER")
     q1 = f"""
     MATCH (x:Forum)-[z:HAS_MEMBER]->(y:Person) DETACH DELETE z;
     """
@@ -558,11 +602,13 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
-    # exe(driver, q1, q2)  
+    exe1(driver, q1)  
+    exe2(driver, q2)  
 
     # -------------------------------------------------
-    # HAS_TAG
+    # 23 HAS_TAG
     # -------------------------------------------------
+    print("23 HAS_TAG")
     q1 = f"""
     MATCH (x:Forum)-[z:HAS_TAG]->(y:Tag) DETACH DELETE z;
     """
@@ -577,11 +623,13 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
-    # exe(driver, q1, q2)  
+    exe1(driver, q1)  
+    exe2(driver, q2)  
 
     # -------------------------------------------------
-    # HAS_MODERATOR
+    # 24 HAS_MODERATOR
     # -------------------------------------------------
+    print("24 HAS_MODERATOR")
     q1 = f"""
     MATCH (x:Forum)-[z:HAS_MODERATOR]->(y:Person) DETACH DELETE z;
     """
@@ -596,11 +644,13 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
-    # exe(driver, q1, q2)  
+    exe1(driver, q1)  
+    exe2(driver, q2)  
 
     # -------------------------------------------------
-    # CONTAINER_OF
+    # 25 CONTAINER_OF
     # -------------------------------------------------
+    print("25 CONTAINER_OF")
     q1 = f"""
     MATCH (x:Forum)-[z:CONTAINER_OF]->(y:Post) DETACH DELETE z;
     """
@@ -615,11 +665,13 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
-    # exe(driver, q1, q2)  
+    exe1(driver, q1)  
+    exe2(driver, q2)  
 
     # -------------------------------------------------
-    # HAS_CREATOR
+    # 26 HAS_CREATOR
     # -------------------------------------------------
+    print("26 HAS_CREATOR")
     q1 = f"""
     MATCH (x:Message)-[z:HAS_CREATOR]->(y:Person) DETACH DELETE z;
     """
@@ -634,11 +686,13 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
-    # exe(driver, q1, q2)  
+    exe1(driver, q1)  
+    exe2(driver, q2)  
 
     # -------------------------------------------------
-    # HAS_TAG
+    # 27 HAS_TAG
     # -------------------------------------------------
+    print("27 HAS_TAG")
     q1 = f"""
     MATCH (x:Message)-[z:HAS_TAG]->(y:Tag) DETACH DELETE z;
     """
@@ -653,11 +707,13 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
-    # exe(driver, q1, q2)  
+    exe1(driver, q1)  
+    exe2(driver, q2)  
 
     # -------------------------------------------------
-    # REPLY_OF
+    # 28 REPLY_OF
     # -------------------------------------------------
+    print("28 REPLY_OF")
     q1 = f"""
     MATCH (x:Comment)-[z:REPLY_OF]->(y:Message) DETACH DELETE z;
     """
@@ -672,27 +728,8 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
 
-    # exe(driver, q1, q2)  
-
-    # -------------------------------------------------
-    # zzz
-    # -------------------------------------------------
-    q1 = f"""
-    MATCH (x:xxx)-[z:zzz]->(y:yyy) DETACH DELETE z;
-    """
-
-    q2 = f"""
-    LOAD CSV WITH HEADERS FROM 'file:///sozmed/zzz.csv' AS r FIELDTERMINATOR '|'
-    CALL {{
-      WITH r
-      MATCH (x:xxx {{id: r.iii}})
-      MATCH (y:yyy {{id: r.iii}})
-      CREATE (x)-[:zzz]->(y)
-    }} IN TRANSACTIONS OF 100000 ROWS;
-    """
-
-    # exe(driver, q1, q2)  
-
+    exe1(driver, q1)  
+    exe2(driver, q2)  
 
 
 
