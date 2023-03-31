@@ -14,6 +14,7 @@
 **/*.duckdb.tmp
 **/*.kuzudb
 **/csv
+**/sozmed.tar.gz
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
