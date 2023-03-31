@@ -1,0 +1,55 @@
+                   table_name  row_count
+0                        city       1343
+1                     company       1575
+2                     country        111
+3                       forum     100827
+4      forum_hasmember_person    2909768
+5            forum_hastag_tag     328584
+6                     message    2860664
+7          message_hastag_tag    2928064
+8                      person      10295
+9      person_hasinterest_tag     238052
+10        person_knows_person     173014
+11       person_likes_message    1870268
+12  person_studyat_university       8309
+13      person_workat_company      22044
+14                        tag      16080
+15                   tagclass         71
+16                 university       6380
+
+select 'city' as tabelle, count(*) as anzahl from city
+union
+select 'company' as tabelle, count(*) as anzahl from company
+union
+select 'country' as tabelle, count(*) as anzahl from country
+union
+select 'company' as tabelle, count(*) as anzahl from company
+union
+select 'forum' as tabelle, count(*) as anzahl from forum
+union
+select 'forum_hasmember_person' as tabelle, count(*) as anzahl from forum_hasmember_person
+union
+select 'forum_hastag_tag' as tabelle, count(*) as anzahl from forum_hastag_tag
+union
+select 'message' as tabelle, count(*) as anzahl from message
+union
+select 'message_hastag_tag' as tabelle, count(*) as anzahl from message_hastag_tag
+union
+select 'person' as tabelle, count(*) as anzahl from person
+union
+select 'person_hasinterest_tag' as tabelle, count(*) as anzahl from person_hasinterest_tag
+union
+select 'person_knows_person' as tabelle, count(*) as anzahl from person_knows_person
+union
+select 'person_likes_message' as tabelle, count(*) as anzahl from person_likes_message
+union
+select 'person_studyat_university' as tabelle, count(*) as anzahl from person_studyat_university
+union
+select 'person_workat_company' as tabelle, count(*) as anzahl from person_workat_company
+union
+select 'tag' as tabelle, count(*) as anzahl from tag
+union
+select 'tagclass' as tabelle, count(*) as anzahl from tagclass
+union
+select 'university' as tabelle, count(*) as anzahl from university
+order by tabelle;
