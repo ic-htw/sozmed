@@ -53,3 +53,4 @@ select 'tagclass' as tabelle, count(*) as anzahl from tagclass
 union
 select 'university' as tabelle, count(*) as anzahl from university
 order by tabelle;
+
