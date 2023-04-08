@@ -1,13 +1,13 @@
 from neo4j import GraphDatabase
-import cred as c
+import cred_neo4j as c
 
 def exe1(driver, *qs):
-    # pass
-    exe(driver, *qs)
-    
-def exe2(driver, *qs):
     pass
     # exe(driver, *qs)
+    
+def exe2(driver, *qs):
+    # pass
+    exe(driver, *qs)
     
 def exe(driver, *qs):
     with driver.session() as session:
