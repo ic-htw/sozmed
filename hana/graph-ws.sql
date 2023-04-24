@@ -1,11 +1,15 @@
+set schema sozmed;
 drop graph workspace GWS_SOZMED;
 
 create graph workspace GWS_SOZMED
   vertex table TagClass
     key id
     label 'TagClass'
-  edge table TagClass
-    source subclassoftagclassid references TagClass
+  vertex table Tag
+    key id
+    label 'Tags'
+  edge table Tag
+    source typetagclassid references Tag
     target id references TagClass
-    label 'IS_SUBCLASS_OF'
+    label 'HAS_TYPE'
     KEY id
