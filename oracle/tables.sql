@@ -82,7 +82,7 @@ CREATE TABLE University (
 --07 Person
 ---------------------------------------------------
 CREATE TABLE Person (
-    creationDate timestamp NOT NULL,
+    creationDate timestamp with time zone NOT NULL,
     id number PRIMARY KEY,
     firstName varchar2(500) NOT NULL,
     lastName varchar2(500) NOT NULL,
@@ -92,14 +92,14 @@ CREATE TABLE Person (
     browserUsed varchar2(500) NOT NULL,
     LocationCityId number NOT NULL,
     speaks varchar2(500) NOT NULL,
-    email varchar2(500) NOT NULL
+    email varchar2(4000) NOT NULL
 );
 
 ---------------------------------------------------
 --08 Forum
 ---------------------------------------------------
 CREATE TABLE Forum (
-    creationDate timestamp NOT NULL,
+    creationDate timestamp with time zone NOT NULL,
     id number PRIMARY KEY,
     title varchar2(500) NOT NULL,
     ModeratorPersonId number -- can be null as its cardinality is 0..1
@@ -110,7 +110,7 @@ CREATE TABLE Forum (
 --09 Forum_hasMember_Person
 ---------------------------------------------------
 CREATE TABLE Forum_hasMember_Person (
-    creationDate timestamp NOT NULL,
+    creationDate timestamp with time zone NOT NULL,
     ForumId number NOT NULL,
     PersonId number NOT NULL
 );
@@ -120,7 +120,7 @@ CREATE TABLE Forum_hasMember_Person (
 --10 Forum_hasTag_Tag
 ---------------------------------------------------
 CREATE TABLE Forum_hasTag_Tag (
-    creationDate timestamp NOT NULL,
+    creationDate timestamp with time zone NOT NULL,
     ForumId number NOT NULL,
     TagId number NOT NULL
 );
@@ -130,7 +130,7 @@ CREATE TABLE Forum_hasTag_Tag (
 --11 Person_hasInterest_Tag
 ---------------------------------------------------
 CREATE TABLE Person_hasInterest_Tag (
-    creationDate timestamp NOT NULL,
+    creationDate timestamp with time zone NOT NULL,
     PersonId number NOT NULL,
     TagId number NOT NULL
 );
@@ -140,7 +140,7 @@ CREATE TABLE Person_hasInterest_Tag (
 --12 Person_studyAt_University
 ---------------------------------------------------
 CREATE TABLE Person_studyAt_University (
-    creationDate timestamp NOT NULL,
+    creationDate timestamp with time zone NOT NULL,
     PersonId number NOT NULL,
     UniversityId number NOT NULL,
     classYear int NOT NULL
@@ -151,7 +151,7 @@ CREATE TABLE Person_studyAt_University (
 --13 Person_workAt_Company
 ---------------------------------------------------
 CREATE TABLE Person_workAt_Company (
-    creationDate timestamp NOT NULL,
+    creationDate timestamp with time zone NOT NULL,
     PersonId number NOT NULL,
     CompanyId number NOT NULL,
     workFrom int NOT NULL
@@ -162,7 +162,7 @@ CREATE TABLE Person_workAt_Company (
 --14 Person_knows_Person
 ---------------------------------------------------
 CREATE TABLE Person_knows_Person (
-    creationDate timestamp NOT NULL,
+    creationDate timestamp with time zone NOT NULL,
     Person1id number NOT NULL,
     Person2id number NOT NULL,
     PRIMARY KEY (Person1id, Person2id)
@@ -173,7 +173,7 @@ CREATE TABLE Person_knows_Person (
 --15 Message
 ---------------------------------------------------
 CREATE TABLE Message (
-    creationDate timestamp NOT NULL,
+    creationDate timestamp with time zone NOT NULL,
     id number PRIMARY KEY,
     language varchar(80),
     content varchar(2000),
@@ -191,7 +191,7 @@ CREATE TABLE Message (
 --16 Person_likes_Message
 ---------------------------------------------------
 CREATE TABLE Person_likes_Message (
-    creationDate timestamp NOT NULL,
+    creationDate timestamp with time zone NOT NULL,
     PersonId number NOT NULL,
     MessageId number NOT NULL
 );
@@ -200,7 +200,7 @@ CREATE TABLE Person_likes_Message (
 --17 Message_hasTag_Tag
 ---------------------------------------------------
 CREATE TABLE Message_hasTag_Tag (
-    creationDate timestamp NOT NULL,
+    creationDate timestamp with time zone NOT NULL,
     MessageId number NOT NULL,
     TagId number NOT NULL
 );
