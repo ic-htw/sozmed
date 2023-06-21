@@ -1,0 +1,8 @@
+options (skip=1)
+load data
+infile 'TagClass.csv'
+truncate
+into table tagclass
+fields terminated by '|'
+trailing nullcols
+(id,name,url,SubclassOfTagClassId)
