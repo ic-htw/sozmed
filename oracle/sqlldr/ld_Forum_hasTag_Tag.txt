@@ -1,0 +1,8 @@
+options (skip=1)
+load data
+infile '../../csv/sozmed/Forum_hasTag_Tag.csv'
+truncate
+into table forum_hastag_tag
+fields terminated by '|'
+trailing nullcols
+(creationDate timestamp with time zone 'YYYY-MM-DD HH24:MI:SS.FF+TZH',ForumId,TagId)

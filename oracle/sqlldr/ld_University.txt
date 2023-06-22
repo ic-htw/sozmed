@@ -1,0 +1,8 @@
+options (skip=1)
+load data
+infile '../../csv/sozmed/University.csv'
+truncate
+into table university
+fields terminated by '|'
+trailing nullcols
+(id,name,url,LocationPlaceId)

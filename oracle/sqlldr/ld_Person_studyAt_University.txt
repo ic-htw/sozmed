@@ -1,0 +1,8 @@
+options (skip=1)
+load data
+infile '../../csv/sozmed/Person_studyAt_University.csv'
+truncate
+into table person_studyat_university
+fields terminated by '|'
+trailing nullcols
+(creationDate timestamp with time zone 'YYYY-MM-DD HH24:MI:SS.FF+TZH',PersonId,UniversityId,classYear)

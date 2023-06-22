@@ -1,0 +1,8 @@
+options (skip=1)
+load data
+infile '../../csv/sozmed/Person_workAt_Company.csv'
+truncate
+into table person_workat_company
+fields terminated by '|'
+trailing nullcols
+(creationDate timestamp with time zone 'YYYY-MM-DD HH24:MI:SS.FF+TZH',PersonId,CompanyId,workFrom)

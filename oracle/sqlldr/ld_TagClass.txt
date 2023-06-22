@@ -1,6 +1,6 @@
 options (skip=1)
 load data
-infile 'TagClass.csv'
+infile '../../csv/sozmed/TagClass.csv'
 truncate
 into table tagclass
 fields terminated by '|'

@@ -1,0 +1,8 @@
+options (skip=1)
+load data
+infile '../../csv/sozmed/Message.csv'
+truncate
+into table message
+fields terminated by '|'
+trailing nullcols
+(creationDate timestamp with time zone 'YYYY-MM-DD HH24:MI:SS.FF+TZH',id,language,content char(2000),imageFile,locationIP,browserUsed,length,CreatorPersonId,ContainerForumId,LocationCountryId,ParentMessageId)

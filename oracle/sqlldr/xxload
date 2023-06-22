@@ -1,0 +1,17 @@
+sqlldr userid=usozmed/$1 control=ld_TagClass.txt;
+sqlldr userid=usozmed/$1 control=ld_Tag.txt;
+sqlldr userid=usozmed/$1 control=ld_Country.txt;
+sqlldr userid=usozmed/$1 control=ld_City.txt;
+sqlldr userid=usozmed/$1 control=ld_Company.txt;
+sqlldr userid=usozmed/$1 control=ld_University.txt;
+sqlldr userid=usozmed/$1 control=ld_Person.txt;
+sqlldr userid=usozmed/$1 control=ld_Forum.txt;
+sqlldr userid=usozmed/$1 control=ld_Message.txt;
+sqlldr userid=usozmed/$1 control=ld_Forum_hasMember_Person.txt;
+sqlldr userid=usozmed/$1 control=ld_Forum_hasTag_Tag.txt;
+sqlldr userid=usozmed/$1 control=ld_Person_hasInterest_Tag.txt;
+sqlldr userid=usozmed/$1 control=ld_Person_studyAt_University.txt;
+sqlldr userid=usozmed/$1 control=ld_Person_workAt_Company.txt;
+sqlldr userid=usozmed/$1 control=ld_Person_knows_Person.txt;
+sqlldr userid=usozmed/$1 control=ld_Person_likes_Message.txt;
+sqlldr userid=usozmed/$1 control=ld_Message_hasTag_Tag.txt;

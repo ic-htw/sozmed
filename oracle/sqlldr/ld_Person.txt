@@ -1,8 +1,8 @@
 options (skip=1)
 load data
-infile 'Person.csv'
+infile '../../csv/sozmed/Person.csv'
 truncate
-into table Person
+into table person
 fields terminated by '|'
 trailing nullcols
 (creationDate timestamp with time zone 'YYYY-MM-DD HH24:MI:SS.FF+TZH',id,firstName,lastName,gender,birthday date "YYYY-MM-DD",locationIP,browserUsed,LocationCityId,speaks,email char(4000))

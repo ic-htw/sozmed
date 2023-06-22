@@ -1,2 +1,0 @@
-# sqlldr userid=usozmed/$1 control=ld_TagClass.txt
-sqlldr userid=usozmed/$1 control=ld_Person.txt

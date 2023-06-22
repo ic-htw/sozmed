@@ -1,0 +1,8 @@
+options (skip=1)
+load data
+infile '../../csv/sozmed/Tag.csv'
+truncate
+into table tag
+fields terminated by '|'
+trailing nullcols
+(id,name,url,TypeTagClassId)

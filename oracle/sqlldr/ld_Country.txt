@@ -1,0 +1,8 @@
+options (skip=1)
+load data
+infile '../../csv/sozmed/Country.csv'
+truncate
+into table country
+fields terminated by '|'
+trailing nullcols
+(id,name,url,PartOfContinentId)
