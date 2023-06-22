@@ -1,21 +1,21 @@
-                   table_name  row_count
-0                        city       1343
-1                     company       1575
-2                     country        111
-3                       forum     100827
-4      forum_hasmember_person    2909768
-5            forum_hastag_tag     328584
-6                     message    2860664
-7          message_hastag_tag    2928064
-8                      person      10295
-9      person_hasinterest_tag     238052
-10        person_knows_person     173014
-11       person_likes_message    1870268
-12  person_studyat_university       8309
-13      person_workat_company      22044
-14                        tag      16080
-15                   tagclass         71
-16                 university       6380
+                   table_name    row_count
+0                        city        1.343
+1                     company        1.575
+2                     country          111
+3                       forum      100.827
+4      forum_hasmember_person    2.909.768
+5            forum_hastag_tag      328.584
+6                     message    2.860.664
+7          message_hastag_tag    2.928.064
+8                      person       10.295
+9      person_hasinterest_tag      238.052
+10        person_knows_person      173.014
+11       person_likes_message    1.870.268
+12  person_studyat_university        8.309
+13      person_workat_company       22.044
+14                        tag       16.080
+15                   tagclass           71
+16                 university        6.380
 
 select 'city' as tabelle, count(*) as anzahl from city
 union
