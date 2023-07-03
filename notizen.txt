@@ -1,2 +1,20 @@
 interactive 13 44s
 bi 17 > 9 min abgebrochen
+
+                     city ci
+                  company cmp
+                  country co
+                    forum f
+   forum_hasmember_person fmbr
+         forum_hastag_tag ftag
+                  message msg, msgp, msgc
+       message_hastag_tag mtag
+                   person p
+   person_hasinterest_tag pintrst
+      person_knows_person knows
+     person_likes_message plikes
+person_studyat_university pstudy
+    person_workat_company pwrk
+                      tag t
+                 tagclass tc
+               university u
