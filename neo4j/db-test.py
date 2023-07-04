@@ -1,7 +1,7 @@
 
 import pandas as pd
 from neo4j import GraphDatabase
-import cred as c
+import cred_neo4j as c
 
 pd.set_option("display.max_rows", None)
 pd.set_option("display.max_columns", None)

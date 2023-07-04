@@ -18,3 +18,14 @@ person_studyat_university pstudy
                       tag t
                  tagclass tc
                university u
+
+subgraph
+Q1: 155.615.588
+Q2:     296.644
+Q3:      71.354
+Q4:
+Q5:
+Q6:
+Q7:
+Q8:
+Q9:
