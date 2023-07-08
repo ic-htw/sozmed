@@ -2,12 +2,12 @@ from neo4j import GraphDatabase
 import cred_neo4j as c
 
 def exe1(driver, *qs):
-    pass
-    # exe(driver, *qs)
-    
-def exe2(driver, *qs):
     # pass
     exe(driver, *qs)
+    
+def exe2(driver, *qs):
+    pass
+    # exe(driver, *qs)
     
 def exe(driver, *qs):
     with driver.session() as session:
@@ -34,7 +34,8 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
       WITH r
       CREATE (x:TagClass {{
         id: toInteger(r.id), 
-        name: r.name
+        name: r.name,
+        url: r.url
         }})
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
@@ -63,7 +64,8 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
       WITH r
       CREATE (x:Tag {{
         id: toInteger(r.id), 
-        name: r.name
+        name: r.name,
+        url: r.url
         }})
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
@@ -92,7 +94,8 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
       WITH r
       CREATE (x:Country {{
         id: toInteger(r.id), 
-        name: r.name
+        name: r.name,
+        url: r.url
         }})
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
@@ -121,7 +124,8 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
       WITH r
       CREATE (x:City {{
         id: toInteger(r.id), 
-        name: r.name
+        name: r.name,
+        url: r.url
         }})
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
@@ -150,7 +154,8 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
       WITH r
       CREATE (x:Company {{
         id: toInteger(r.id), 
-        name: r.name
+        name: r.name,
+        url: r.url
         }})
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
@@ -179,7 +184,8 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
       WITH r
       CREATE (x:University {{
         id: toInteger(r.id), 
-        name:r.name
+        name:r.name,
+        url: r.url
         }})
     }} IN TRANSACTIONS OF 100000 ROWS;
     """
@@ -208,7 +214,14 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
       WITH r
       CREATE (x:Person {{
         id: toInteger(r.id), 
+        firstName: r.firstName,
         lastName: r.lastName, 
+        gender: r.gender,
+        birthday: date(r.birthday),
+        locationIP: r.locationIP,
+        browserUsed: r.browserUsed,
+        speaks: r.speaks,
+        email: r.email,
         creationDate: datetime(replace(r.creationDate, ' ', 'T'))
         }})
     }} IN TRANSACTIONS OF 100000 ROWS;
@@ -273,6 +286,11 @@ with GraphDatabase.driver(c.neo4j_host, auth=(c.neo4j_userid, c.neo4j_password))
       WITH r
       CREATE (x:Message {{
         id: toInteger(r.id), 
+        language: r.language,
+        content: r.content,
+        imageFile: r.imageFile,
+        locationIP: r.locationIP,
+        browserUsed: r.browserUsed,
         length: toInteger(r.length),
         ParentMessageId: toInteger(r.ParentMessageId), 
         creationDate: datetime(replace(r.creationDate, ' ', 'T'))
